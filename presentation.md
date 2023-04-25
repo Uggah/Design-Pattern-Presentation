@@ -20,7 +20,9 @@ Algorithm / functionality is implemented in ordered steps
 
 ## Example
 
-Example: 
+Image Optimization
+
+Steps: 
 1. load image
 1. shrink image resolution
 1. deal with alpha-channel
@@ -47,13 +49,13 @@ Example:
 
 
 ```java
-public abstract Image loadImage(byte[] imageBytes);
+protected abstract Image loadImage(byte[] imageBytes);
 
-public abstract Image shrinkResolution(Image image);
+protected abstract Image shrinkResolution(Image image);
 
-public abstract Image handleAlphaChannel(Image image);
+protected abstract Image handleAlphaChannel(Image image);
 
-public abstract byte[] export(Image image);
+protected abstract byte[] export(Image image);
 
 public final byte[] optimize(byte[] imageBytes) { // <-- template method
     Image image = loadImage(imageBytes);
@@ -62,6 +64,12 @@ public final byte[] optimize(byte[] imageBytes) { // <-- template method
     return export(image);
 }
 ```
+
+---
+
+# Structure
+
+![bg 60%](./UML/template_method_uml.svg)
 
 ---
 
@@ -144,7 +152,7 @@ public final HttpResponse handleHttpRequest(HttpRequest httpRequest) {
 
 ---
 
-# Consequences
+# Reasons not to use the template method pattern
 
 - The algorithm always has to follow the same order of execution
     - It may limit some implementations
@@ -213,6 +221,9 @@ public abstract class InputStream implements Closeable {
 E. Gamma, R. Helm, J. Vlissides, R. Johnson: Design Patterns. Elements of Reusable Object-Oriented Software. July 1, 1997
 
 Pankaj: Template Method Design Pattern in Java. August 3, 2022. Accessed from: https://www.digitalocean.com/community/tutorials/template-method-design-pattern-in-java on March 28, 2023.
+
+
+--- 
 
 Refactoring Guru by Alexander Shvets: Template Method. Unknown release date. Accessed from: https://refactoring.guru/design-patterns/template-method on March 28, 2023.
 
